@@ -1317,14 +1317,17 @@ client.on('interactionCreate', async (interaction) => {
 const fs = require("fs");
 
 client.on("messageCreate", async (message) => {
+
   if (message.author.bot) return;
 
+  // PREFIX READ
   const prefixes = JSON.parse(
     fs.readFileSync("./prefix.json", "utf8")
   );
 
   const currentPrefix = prefixes.prefix;
 
+  // PREFIX CHECK
   if (!message.content.startsWith(currentPrefix)) return;
 
   const args = message.content
@@ -1334,12 +1337,10 @@ client.on("messageCreate", async (message) => {
 
   const command = args.shift().toLowerCase();
 
+  // PLAY TEST
   if (command === "play") {
     return message.reply("🎵 Play command working!");
   }
-});
-
-  const command = args.shift().toLowerCase();
 
   // PREFIX CHANGE
   if (command === "prefix") {
@@ -1360,6 +1361,9 @@ client.on("messageCreate", async (message) => {
     );
 
     return message.reply(`✅ Prefix changed to: ${newPrefix}`);
+  }
+
+});hanged to: ${newPrefix}`);
   }
 
   // PLAY COMMAND TEST
