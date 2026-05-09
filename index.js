@@ -1350,7 +1350,6 @@ client.on("messageCreate", async (message) => {
     );
   }
 });
-  
   // PLAY COMMAND TEST
   if (command === "play") {
     return message.reply("🎵 Play command working!");
