@@ -1319,7 +1319,11 @@ const fs = require("fs");
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  const currentPrefix = require("./prefix.json").prefix;
+  const prefixes = JSON.parse(
+    fs.readFileSync("./prefix.json", "utf8")
+  );
+
+  const currentPrefix = prefixes.prefix;
 
   if (!message.content.startsWith(currentPrefix)) return;
 
@@ -1327,6 +1331,13 @@ client.on("messageCreate", async (message) => {
     .slice(currentPrefix.length)
     .trim()
     .split(/ +/);
+
+  const command = args.shift().toLowerCase();
+
+  if (command === "play") {
+    return message.reply("🎵 Play command working!");
+  }
+});
 
   const command = args.shift().toLowerCase();
 
