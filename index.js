@@ -1321,8 +1321,7 @@ const fs = require("fs");
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  const currentPrefix = require("./prefix.json").prefix;
-
+  const args = message.content.slice(currentPrefix.length).trim().split(/ +/);
   if (message.content.startsWith(currentPrefix + "prefix")) {
 
     if (!message.member.permissions.has("Administrator")) {
