@@ -1355,17 +1355,13 @@ client.on("messageCreate", async (message) => {
       return message.reply(`Usage: ${currentPrefix}prefix <newprefix>`);
     }
 
-    fs.writeFileSync(
+  fs.writeFileSync(
   "./prefix.json",
   JSON.stringify({ prefix: newPrefix }, null, 2)
 );
 
 return message.reply(`✅ Prefix changed to: ${newPrefix}`);
-  }
-
-});hanged to: ${newPrefix}`);
-  }
-
+  
   // PLAY COMMAND TEST
   if (command === "play") {
     return message.reply("🎵 Play command working!");
