@@ -1316,7 +1316,6 @@ client.on('interactionCreate', async (interaction) => {
       }
 
       client.login(config.token);
-
 const fs = require("fs");
 
 client.on("messageCreate", async (message) => {
