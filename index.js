@@ -1317,14 +1317,15 @@ client.on('interactionCreate', async (interaction) => {
 
       client.login(config.token);
 
-
 const fs = require("fs");
+
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
   const currentPrefix = require("./prefix.json").prefix;
 
   if (message.content.startsWith(currentPrefix + "prefix")) {
+
     if (!message.member.permissions.has("Administrator")) {
       return message.reply("❌ Administrator permission required.");
     }
