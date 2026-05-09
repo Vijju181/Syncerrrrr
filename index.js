@@ -1356,11 +1356,11 @@ client.on("messageCreate", async (message) => {
     }
 
     fs.writeFileSync(
-      "./prefix.json",
-      JSON.stringify({ prefix: newPrefix }, null, 2)
-    );
+  "./prefix.json",
+  JSON.stringify({ prefix: newPrefix }, null, 2)
+);
 
-    return message.reply(`✅ Prefix changed to: ${newPrefix}`);
+return message.reply(`✅ Prefix changed to: ${newPrefix}`);
   }
 
 });hanged to: ${newPrefix}`);
