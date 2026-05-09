@@ -1314,29 +1314,46 @@ client.on('interactionCreate', async (interaction) => {
           }
         });
       }
-
-      client.login(config.token);
 const fs = require("fs");
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  const args = message.content.slice(currentPrefix.length).trim().split(/ +/);
-  if (message.content.startsWith(currentPrefix + "prefix")) {
+  const currentPrefix = require("./prefix.json").prefix;
+
+  if (!message.content.startsWith(currentPrefix)) return;
+
+  const args = message.content
+    .slice(currentPrefix.length)
+    .trim()
+    .split(/ +/);
+
+  const command = args.shift().toLowerCase();
+
+  // PREFIX CHANGE
+  if (command === "prefix") {
 
     if (!message.member.permissions.has("Administrator")) {
       return message.reply("❌ Administrator permission required.");
     }
 
-    const args = message.content.split(" ").slice(1);
     const newPrefix = args[0];
 
     if (!newPrefix) {
-      return message.reply("Usage: " + currentPrefix + "prefix <newprefix>");
+      return message.reply(`Usage: ${currentPrefix}prefix <newprefix>`);
     }
 
-    fs.writeFileSync("./prefix.json", JSON.stringify({ prefix: newPrefix }, null, 2));
+    fs.writeFileSync(
+      "./prefix.json",
+      JSON.stringify({ prefix: newPrefix }, null, 2)
+    );
 
-    return message.reply("✅ Prefix changed to: " + newPrefix);
+    return message.reply(`✅ Prefix changed to: ${newPrefix}`);
+  }
+
+  // PLAY COMMAND TEST
+  if (command === "play") {
+    return message.reply("🎵 Play command working!");
   }
 });
+      client.login(config.token);
